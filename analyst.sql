@@ -1,5 +1,3 @@
-create role "{{name}}"
-with login password '{{password}}'
-valid until '{{expiration}}' inherit;
-alter default privileges in schema public;
-grant select on tables  to "{{name}}";
+create role "{{name}}" with login password '{{password}}' ;
+grant usage on schema public to "{{name}}";
+grant select on all tables in schema public to "{{name}}";

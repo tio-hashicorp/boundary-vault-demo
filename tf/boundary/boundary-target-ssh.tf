@@ -34,7 +34,7 @@ resource "boundary_target" "ssh-aws-target" {
   name         = "SSH AWS Target"
   type         = "tcp"
   default_port = "22"
-  scope_id     = boundary_scope.project.id
+  scope_id     = boundary_scope.project-prod-support.id
   host_set_ids = [
     boundary_host_set.aws.id
   ]
@@ -48,7 +48,7 @@ resource "boundary_target" "ssh-gcp-target" {
   name         = "SSH GCP Target"
   type         = "tcp"
   default_port = "22"
-  scope_id     = boundary_scope.project.id
+  scope_id     = boundary_scope.project-prod-support.id
   host_set_ids = [
     boundary_host_set.gcp.id,
   ]

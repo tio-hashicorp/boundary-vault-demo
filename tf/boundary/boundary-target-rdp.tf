@@ -18,7 +18,7 @@ resource "boundary_target" "rdp-target" {
   name         = "RDP Target"
   type         = "tcp"
   default_port = "3389"
-  scope_id     = boundary_scope.project.id
+  scope_id     = boundary_scope.project-prod-support.id
   host_set_ids = [
     boundary_host_set.rdp.id
   ]

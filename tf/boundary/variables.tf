@@ -8,7 +8,7 @@ variable "client_id" {
 }
 
 variable "client_secret" {
-  default = "XLS76cv8S2srddcjhRCNCgF0iE_oJgI8pbNMDIlghfMw26vCDRI8lELc2dIIQBvr"
+  default = ""
 }
 
 // thio.austin@gmail.com
@@ -17,22 +17,34 @@ variable "subject" {
 }
 
 variable "org" {
-  default = "hashi-sg"
+  default = "hashicorp-sg"
 }
 
 variable "signing_algorithms" {
   default = ["RS256"]
 }
 
-variable "vault_token_for_boundary" {
-  default = "s.yF6VlQghXqWEZVIHcgGJGK3X"
+variable "vault_erp_token_for_boundary" {
+  default = "s.F97xJ6cmvr7RNR9xz38zQtus"
 }
+
+variable "vault_token_for_boundary" {
+  //default = "s.yF6VlQghXqWEZVIHcgGJGK3X"
+  default = "s.nFcENaw5ffiU9QskFRENuvXG"
+}
+
 variable "vault_fqdn" {
   default = "http://127.0.0.1:8200"
 }
+
 variable "vault_psql_dba_path" {
   default = "database/creds/dba"
 }
+
+variable "vault_psql_analyst_path" {
+  default = "database/creds/analyst"
+}
+
 variable "vault_ssh_path" {
   default = "ssh/sign/ubuntu"
 }

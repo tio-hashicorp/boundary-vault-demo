@@ -1,5 +1,5 @@
 //oidc
-resource "boundary_auth_method_oidc" "oidc_azuread" {
+resource "boundary_auth_method_oidc" "oidc_auth0" {
   name                 = "Auth0"
   description          = "Default OIDC Auth Method"
   scope_id             = boundary_scope.org.id
@@ -14,12 +14,14 @@ resource "boundary_auth_method_oidc" "oidc_azuread" {
 }
 
 resource "boundary_account_oidc" "boundary_account_oidc" {
-  auth_method_id = boundary_auth_method_oidc.oidc_azuread.id
+  auth_method_id = boundary_auth_method_oidc.oidc_auth0.id
   description    = "Default OIDC Account"
   issuer         = var.issuer
   subject        = var.subject
   name          = "thio.austin@gmail.com"
 }
+
+// Organization
 
 resource "boundary_user" "tio" {
   name        = "tio"
@@ -30,7 +32,7 @@ resource "boundary_user" "tio" {
 
 resource "boundary_role" "server-admin" {
   name           = "Server Admin Role"
-  grant_scope_id = boundary_scope.project.id
+  grant_scope_id = boundary_scope.project-prod-support.id
   grant_strings = [
     "id=${boundary_target.ssh-aws-target.id};actions=*",
     "id=${boundary_target.ssh-gcp-target.id};actions=*",
@@ -53,6 +55,7 @@ resource "boundary_account" "dbadmin" {
   password       = "password"
 }
 
+
 resource "boundary_user" "dbadmin" {
   name        = "dbadmin"
   description = "dbadmin's user resource"
@@ -60,9 +63,11 @@ resource "boundary_user" "dbadmin" {
   scope_id    = boundary_scope.org.id
 }
 
+// Project
+//
 resource "boundary_role" "psql-admin" {
   name           = "PSQL Admin Role"
-  grant_scope_id = boundary_scope.project.id
+  grant_scope_id = boundary_scope.project-prod-support.id
   grant_strings = [
     "id=${boundary_target.psql-target.id};actions=*",
     "id=${boundary_target.mysql-target.id};actions=*",

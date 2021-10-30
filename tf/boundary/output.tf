@@ -5,6 +5,7 @@ output "target-ids" {
     "AWS VM: ${boundary_target.ssh-aws-target.id}",
     "AZURE RDP: ${boundary_target.rdp-target.id}",
     "LOCAL MYSQL: ${boundary_target.mysql-target.id}",
+    "LOCAL POSTGRES-DBA: ${boundary_target.psql-dba-target.id}",
     "LOCAL POSTGRES: ${boundary_target.psql-target.id}",
     "GKE K8S: ${boundary_target.gke-target.id}",
   ]
@@ -16,12 +17,12 @@ output "dbadmin-password" {
 }
 
 output "auth-method-id" {
-   value = boundary_auth_method_oidc.oidc_azuread.id
+   value = boundary_auth_method_oidc.oidc_auth0.id
 }
 
 //output "auth-method" {
 //  value = [
 //    "PASSWORD: ${boundary_auth_method.password.id}",
-//    "AZURE AD: ${boundary_auth_method_oidc.oidc_azuread.id}"
+//    "AZURE AD: ${boundary_auth_method_oidc.oidc_auth0.id}"
 //    ]
 //}

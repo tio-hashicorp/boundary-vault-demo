@@ -19,7 +19,7 @@ resource "boundary_target" "gke-target" {
   type         = "tcp"
   default_port = "443"
   session_connection_limit = -1
-  scope_id     = boundary_scope.project.id
+  scope_id     = boundary_scope.project-prod-support.id
   host_set_ids = [
     boundary_host_set.gke.id
   ]
