@@ -40,7 +40,7 @@ resource "boundary_target" "ssh-aws-target" {
   ]
   application_credential_library_ids = [
     //todo
-    boundary_credential_library_vault.kv_mysql.id
+    boundary_credential_library_vault.kv_aws.id
   ]
 }
 

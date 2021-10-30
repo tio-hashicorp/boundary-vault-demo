@@ -1,7 +1,23 @@
 .terraform
 .idea
 .terraform*
-terraform.tfstate*
 trusted-user-ca-keys.pem
 boundarydemo
 *.pub
+
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+
+# no creds
+*.pem
+
+# terraformrc file
+terraform.rc
+.terraformrc

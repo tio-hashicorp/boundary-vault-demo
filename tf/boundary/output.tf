@@ -15,9 +15,13 @@ output "dbadmin-password" {
   value = [boundary_account.dbadmin.login_name, boundary_account.dbadmin.password]
 }
 
-output "auth-method" {
-  value = [
-    "PASSWORD: ${boundary_auth_method.password.id}",
-    "AZURE AD: ${boundary_auth_method_oidc.oidc_azuread.id}"
-    ]
+output "auth-method-id" {
+   value = boundary_auth_method_oidc.oidc_azuread.id
 }
+
+//output "auth-method" {
+//  value = [
+//    "PASSWORD: ${boundary_auth_method.password.id}",
+//    "AZURE AD: ${boundary_auth_method_oidc.oidc_azuread.id}"
+//    ]
+//}

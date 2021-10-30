@@ -1,13 +1,13 @@
 // gcp
 variable "project" {
-  default = "se-kabu"
+  default = "terraform-gcloud1"
 }
 
 variable "gcp_machine_type" {
   default = "e2-medium"
 }
 variable "gcp_region" {
-  default = "asia-northeast1"
+  default = "asia-southeast1"
 }
 variable "image" {
   default = "ubuntu-1804-bionic-v20201014"
@@ -15,10 +15,11 @@ variable "image" {
 
 // aws
 variable "ami" {
-  default = "ami-02b658ac34935766f"
+  //default = "ami-02b658ac34935766f"
+  default = "ami-0d043dc4c1f554854"
 }
 variable "aws_region" {
-  default = "ap-northeast-1"
+  default = "ap-southeast-1"
 }
 
 variable "aws_machine_type" {
@@ -31,14 +32,14 @@ variable "ubuntu_password" {
 
 // RDP Azure
 
-variable "location" {
-  default = "East US"
-}
-
-variable "admin_password" {
-  default = "Password1234"
-}
-
-variable "admin_user" {
-  default = "adminuser"
-}
+//variable "location" {
+//  default = "East US"
+//}
+//
+//variable "admin_password" {
+//  default = "Password1234"
+//}
+//
+//variable "admin_user" {
+//  default = "adminuser"
+//}

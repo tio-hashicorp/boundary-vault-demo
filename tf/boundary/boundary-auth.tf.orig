@@ -1,9 +1,8 @@
 //oidc
 resource "boundary_auth_method_oidc" "oidc_azuread" {
-  name                 = "Auth0"
+  name                 = "Azure AD Authentication"
   description          = "Default OIDC Auth Method"
   scope_id             = boundary_scope.org.id
-  //scope_id             = "o_1234567890"
   type                 = "oidc"
   issuer               = var.issuer
   client_id            = var.client_id
@@ -18,12 +17,11 @@ resource "boundary_account_oidc" "boundary_account_oidc" {
   description    = "Default OIDC Account"
   issuer         = var.issuer
   subject        = var.subject
-  name          = "thio.austin@gmail.com"
 }
 
-resource "boundary_user" "tio" {
-  name        = "tio"
-  description = "tio's user resource"
+resource "boundary_user" "tkaburagi" {
+  name        = "kabu"
+  description = "<boundary_user> user resource"
   account_ids = [boundary_account_oidc.boundary_account_oidc.id]
   scope_id    = boundary_scope.org.id
 }
@@ -37,7 +35,7 @@ resource "boundary_role" "server-admin" {
     "id=*;type=session;actions=cancel:self,read"
   ]
   scope_id      = boundary_scope.org.id
-  principal_ids = [boundary_user.tio.id]
+  principal_ids = [boundary_user.tkaburagi.id]
 }
 
 //passsword

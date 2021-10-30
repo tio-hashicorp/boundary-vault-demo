@@ -2,6 +2,7 @@ resource "boundary_target" "mysql-target" {
   name         = "MySQL Target"
   type         = "tcp"
   default_port = "3306"
+  session_connection_limit = -1
   scope_id     = boundary_scope.project.id
   host_set_ids = [
     boundary_host_set.local.id

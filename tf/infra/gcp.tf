@@ -1,7 +1,8 @@
 resource "google_compute_instance" "boundary-demo-gcp" {
   name         = "boundary-demo"
   machine_type = var.gcp_machine_type
-  zone         = "asia-northeast1-a"
+  #zone         = "asia-northeast1-a"
+  zone         = "${var.gcp_region}-a"
   tags         = google_compute_firewall.boundary-demo-gcp-fw.source_tags
   network_interface {
     subnetwork = "default"
@@ -21,7 +22,8 @@ resource "google_compute_instance" "boundary-demo-gcp" {
 data "template_file" "init_gcp" {
   template = file("setup-gcp.sh")
   vars = {
-    ca_key = file("../../trusted-user-ca-keys.pem")
+    #ca_key = file("../../trusted-user-ca-keys.pem")
+    ca_key = file("/tmp/trusted-user-ca-keys.pem")
   }
 }
 

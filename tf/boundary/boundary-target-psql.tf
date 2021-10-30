@@ -17,8 +17,9 @@ resource "boundary_host_set" "local" {
 resource "boundary_target" "psql-target" {
   name         = "PSQL Target"
   type         = "tcp"
-  default_port = "5432"
+  default_port = "55432"
   scope_id     = boundary_scope.project.id
+  session_connection_limit = -1
   host_set_ids = [
     boundary_host_set.local.id
   ]
