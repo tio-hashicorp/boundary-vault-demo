@@ -162,7 +162,7 @@ ssh -i boundarydemo-signed-cert.pub \
 vault policy write psql-dba policies/dba-policy.hcl
 vault policy write ssh-ubuntu policies/ssh-policy.hcl
 vault policy write kv-mysql policies/kv-mysql.hcl
-vault policy write kv-rdp kv-rdp.hcl
+vault policy write kv-rdp policies/kv-rdp.hcl
 vault policy write boundary-controller policies/boundary-controller-policy.hcl
 ```
 
