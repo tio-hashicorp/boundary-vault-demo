@@ -83,7 +83,7 @@ psql -d postgres -h 127.0.0.1 -p 5432 -U postgres
 ```shell script
 docker run --rm -d \
   --name mysql \
-  -e MYSQL_ROOT_PASSWORD=rooooot \
+  -e MYSQL_ROOT_PASSWORD=root \
   -p 3306:3306 \
   mysql:latest
 
@@ -98,6 +98,7 @@ mysql -uroot -p -h 127.0.0.1
 vault secrets enable -path=boundary kv
 vault kv put boundary/mysql-user username=boundarydemo-mysql password=password
 vault kv put boundary/rdp-user username=(RDP USERNAME) password=(RDP PASSWORD)
+vault kv put boundary/aws-user username=tio password=happyhacking
 ```
 
 #### Test
@@ -159,6 +160,7 @@ ssh -i boundarydemo-signed-cert.pub \
 
 ### 3-4. Prepare for Boundary Integration
 ```shell script
+vault policy write aws-user policies/akv-aws.hcl
 vault policy write psql-dba policies/dba-policy.hcl
 vault policy write ssh-ubuntu policies/ssh-policy.hcl
 vault policy write kv-mysql policies/kv-mysql.hcl
