@@ -74,9 +74,9 @@ docker run --rm -d \
     -v postgres-tmp:/Users/Shared/data-for-boundary-demo \
     postgres:12-alpine
 
-Note: In my case I use northwind_psql image
+Note: In my case I use northwind_psql image, which I configured to list on *port 55432*
 $ docker-compose up
-# port 55432
+
 ```
 
 ```shell script
@@ -129,7 +129,7 @@ vault write database/config/postgres \
 vault write database/roles/dba \
       db_name=postgres \
       creation_statements=@dba.sql \
-      default_ttl=3m \
+      default_ttl=5m \
       max_ttl=60m
 ```
 
@@ -137,10 +137,22 @@ vault write database/roles/dba \
 vault read database/creds/dba
 ```
 
+
+```shell script
+vault write database/roles/analyst \
+      db_name=postgres \
+      creation_statements=@analyst.sql \
+      default_ttl=5m \
+      max_ttl=60m
+```
+
+```shell script
+vault read database/creds/dba
+```
 #### Test
 
 ```shell script
-psql -d postgres -h 127.0.0.1 -p 5432 -U v-root-dba-yiY3EJlpngXg0wYvRN7p-1625629960
+psql -d postgres -h 127.0.0.1 -p 55432 -U v-root-dba-yiY3EJlpngXg0wYvRN7p-1625629960
 ```
 
 ### 3-3. SSH Secret Engine
@@ -173,6 +185,7 @@ vault policy write boundary-controller policies/boundary-controller-policy.hcl
 ```
 
 ```shell script
+(execute 2x, the output token should be put into terraform.tfvars vault_erp_token_for_boundary and vault_token_for_boundary)
 vault token create \
   -no-default-policy=true \
   -policy="boundary-controller" \
