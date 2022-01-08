@@ -116,7 +116,7 @@ vault secrets enable database
 vault write database/config/postgres \
       plugin_name=postgresql-database-plugin \
       connection_url="postgresql://{{username}}:{{password}}@localhost:5432/postgres?sslmode=disable" \
-      allowed_roles=dba \
+      allowed_roles='*' \
       username="vault" \
       password="vault-password"
 ```
