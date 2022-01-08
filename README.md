@@ -73,10 +73,14 @@ docker run --rm -d \
     -p 5432:5432 \
     -v postgres-tmp:/Users/Shared/data-for-boundary-demo \
     postgres:12-alpine
+
+Note: In my case I use northwind_psql image
+$ docker-compose up
+# port 55432
 ```
 
 ```shell script
-psql -d postgres -h 127.0.0.1 -p 5432 -U postgres
+psql -d postgres -h 127.0.0.1 -p 55432 -U postgres
 # create role vault with superuser login createrole password 'vault-password';
 ```
 
@@ -115,7 +119,7 @@ vault secrets enable database
 ```shell script
 vault write database/config/postgres \
       plugin_name=postgresql-database-plugin \
-      connection_url="postgresql://{{username}}:{{password}}@localhost:5432/postgres?sslmode=disable" \
+      connection_url="postgresql://{{username}}:{{password}}@localhost:55432/postgres?sslmode=disable" \
       allowed_roles='*' \
       username="vault" \
       password="vault-password"
