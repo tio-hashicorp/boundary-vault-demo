@@ -174,6 +174,8 @@ vault token create \
   -policy="boundary-controller" \
   -policy="psql-dba" \
   -policy="ssh-ubuntu" \
+  -policy="aws-user" \
+  -policy="kv-rdp" \
   -policy="kv-mysql" \
   -policy="kv-rdp" \
   -orphan=true \
