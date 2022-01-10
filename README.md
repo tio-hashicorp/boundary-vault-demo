@@ -123,13 +123,26 @@ vault write database/config/postgres \
       allowed_roles='*' \
       username="vault" \
       password="vault-password"
+      
+vault write database/config/northwind \
+      plugin_name=postgresql-database-plugin \
+      connection_url="postgresql://{{username}}:{{password}}@localhost:55432/northwind?sslmode=disable" \
+      allowed_roles='*' \
+      username="vault" \
+      password="vault-password"
 ```
 
 ```shell script
 vault write database/roles/dba \
       db_name=postgres \
       creation_statements=@dba.sql \
-      default_ttl=5m \
+      default_ttl=3m \
+      max_ttl=60m
+
+vault write database/roles/analyst \
+      db_name=northwind \
+      creation_statements=@analyst.sql \
+      default_ttl=3m \
       max_ttl=60m
 ```
 
